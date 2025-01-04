@@ -12,6 +12,9 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         h1 {
             text-align: center;
@@ -22,6 +25,7 @@
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
+            flex-grow: 1;
         }
         .restaurant {
             background-color: #fff;
@@ -70,12 +74,31 @@
             font-size: 1.2em;
             margin-top: 20px;
         }
+        #backButton {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #backButton:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
     </style>
 </head>
 <body>
     <h1>Nearby Restaurants</h1>
     <div id="loading">Searching for nearby restaurants...</div>
     <div id="restaurants"></div>
+
+    <button id="backButton" onclick="goBackToHomepage()">Back to Homepage</button>
 
     <script>
         const apiKey = 'c503613083b94b5b94898b44a0e09694';
@@ -148,6 +171,10 @@
         function showLoading(isLoading) {
             const loadingElement = document.getElementById("loading");
             loadingElement.style.display = isLoading ? "block" : "none";
+        }
+
+        function goBackToHomepage() {
+            window.location.href = "index.html"; 
         }
 
         window.onload = getUserLocation;

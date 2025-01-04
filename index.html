@@ -14,9 +14,6 @@
         }
     
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
             font-family: 'Caveat', cursive;
         }
 
@@ -93,17 +90,45 @@
             border-radius: 10px;
         }
     
-        .hero h1, .hero p {
-            font-size: 4rem;
+        .hero h1, .hero p { 
             overflow: hidden; 
             white-space: nowrap;
             border-right: 3px solid var(--primary-yellow); 
             animation: typing 3s steps(30, end), blink 0.5s step-end infinite alternate;
         }
 
+        .hero h1 {
+            font-size: 4rem;
+        }
         .hero p {
-            font-size: 1.5rem; 
-            animation: typing 5s steps(50, end) blink 0.5s step-end infinite alternate;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.875rem;
+            }
         }
 
         @keyframes typing {
@@ -659,6 +684,128 @@
                 transform: translateX(10px);
             }
         }
+
+        /* General Styles for Mobile */
+        @media (max-width: 480px) {
+            html {
+                font-size: 12px; /* Smaller base font size */
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+            }
+
+            /* Navbar */
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .navbar-brand {
+                font-size: 1.25rem;
+                margin-bottom: 10px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 20px;
+                text-align: center; /* Center-align content */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* Newsletter Section */
+            .newsletter-section {
+                padding: 15px;
+            }
+
+            .newsletter-form h2 {
+                font-size: 1.25rem;
+            }
+
+            .form-group input,
+            .form-group select {
+                font-size: 0.875rem;
+            }
+
+            .submit-button {
+                font-size: 0.875rem;
+                padding: 10px;
+            }
+
+            /* Hot Places & Featured Trips */
+            .places-grid,
+            .trips-grid {
+                grid-template-columns: 1fr; /* Single column for smaller screens */
+            }
+
+            .place-button,
+            .trip-button {
+                padding: 10px;
+            }
+
+            .place-button h3,
+            .trip-button h3 {
+                font-size: 1rem;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 10px;
+                font-size: 0.75rem;
+                text-align: center; /* Center-align text for better readability */
+            }
+
+            .footer h4 {
+                font-size: 1rem;
+            }
+
+            .footer-column ul li {
+                margin-bottom: 5px;
+            }
+
+            /* Profile Sidebar */
+            .profile-sidebar {
+                width: 100%; /* Full-width for mobile */
+                right: -100%; /* Hide off-screen initially */
+            }
+
+            .profile-sidebar.active {
+                right: 0;
+            }
+
+            .profile-header {
+                padding: 10px;
+            }
+
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+            }
+
+            .profile-form input {
+                font-size: 0.875rem;
+            }
+
+            .save-profile,
+            .logout-btn {
+                font-size: 0.875rem;
+                padding: 10px;
+            }
+        }
     </style>
 
 <div class="overlay"></div>
@@ -771,7 +918,7 @@
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="#">Hotel Booking</a>
+            <a href="hs.html">Hotel Booking</a>
             <a href="nr.html">Nearby Restaurants</a>
             <a href="fld.html">Flight Details</a>
             <a href="profile">Profile</a>

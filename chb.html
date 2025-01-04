@@ -277,7 +277,7 @@
 </head>
 <body>
     <div class="container">
-        <button class="back-button" onclick="window.location.href='/'">
+        <button class="back-button" onclick="window.location.href='index.html'">
             <i class="fas fa-arrow-left"></i> Back Home
         </button>
 
@@ -357,8 +357,8 @@
                 food: ['🍎', '🍌', '🍒', '🍇', '🍉', '🍓', '🍑', '🥝', '🍍', '🍋', '🍔', '🍟', '🌭', '🍕', '🥪', '🥗', '🍤', '🍣']
             };
 
-            const API_KEY = '7884c36e200e412dba889473ac71675a'; 
-            const API_URL = 'https://api.openai.com/v1/chat/completions';
+            const API_KEY = 'AIzaSyCjDm_UEJi6PRPrveyWF53FdV8kpj1alGk';
+            const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCjDm_UEJi6PRPrveyWF53FdV8kpj1alGk';
 
             function addMessage(content, isUser = false) {
                 const messageDiv = document.createElement('div');
@@ -373,9 +373,32 @@
             }
 
             async function fetchChatGPTResponse(message) {
-                return new Promise((resolve) => {
-                    setTimeout(() => resolve(`You said: ${message}`), 500); // Simulated response
-                });
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${API_KEY}`, 
+                        },
+                        body: JSON.stringify({
+                            model: 'gpt-3.5-turbo',  // Use the correct model
+                            messages: [
+                                { role: 'system', content: 'You are a helpful travel assistant.' },
+                                { role: 'user', content: message },
+                            ],
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    return data.choices[0].message.content;
+                } catch (error) {
+                    console.error('Error fetching response:', error);
+                    return "Sorry, something went wrong. Please try again later.";
+                }
             }
 
             async function handleSend() {
